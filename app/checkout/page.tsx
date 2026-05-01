@@ -60,8 +60,8 @@ export default function CheckoutPage() {
   }, []);
 
   const subtotal = items.reduce((s, item) => s + item.book.price * item.qty, 0);
-  const delivery = 30;
-  const total = subtotal + delivery;
+ const delivery = 0;
+const total = subtotal;
 
   const handlePaystack = () => {
     if (!firstName || !lastName || !email || !phone || !address || !city || !region) {
@@ -243,7 +243,6 @@ export default function CheckoutPage() {
               <div style={{ borderTop: "1px solid var(--border)", marginTop: "16px", paddingTop: "16px" }}>
                 {[
                   ["Subtotal", `GHS ${subtotal}`],
-                  ["Delivery", `GHS ${delivery}`],
                 ].map(([label, value]) => (
                   <div key={label} style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", marginBottom: "8px" }}>
                     <span style={{ color: "var(--muted)" }}>{label}</span>
