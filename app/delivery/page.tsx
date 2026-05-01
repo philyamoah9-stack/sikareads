@@ -29,7 +29,7 @@ export default function DeliveryPage() {
           },
           {
             title: "Delivery cost",
-            content: "A flat delivery fee of GHS 30 applies to all orders across Ghana, regardless of size or region. We believe good books should reach everyone.",
+            content: "Delivery is included in the price of every book. No hidden charges at checkout — what you see is what you pay.",
           },
           {
             title: "Order processing",

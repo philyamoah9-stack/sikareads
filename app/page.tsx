@@ -157,7 +157,7 @@ export default function Home() {
       <section style={{ background: "var(--navy)", padding: "40px 48px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", justifyContent: "space-around", flexWrap: "wrap", gap: "24px" }}>
           {[
-            { icon: "🚚", title: "Ghana delivery", desc: "Delivered to your door across Ghana" },
+            { icon: "🚚", title: "Ghana delivery", desc: "Free delivery across Ghana — included in price" },
             { icon: "📦", title: "Careful packaging", desc: "Every book wrapped and protected" },
             { icon: "💳", title: "Pay with Paystack", desc: "Secure checkout in GHS" },
             { icon: "📖", title: "Curated catalogue", desc: "Every book chosen with purpose" },
