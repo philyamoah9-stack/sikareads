@@ -6,27 +6,26 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const ALL_BOOKS = [
-  { id: "1", title: "The Richest Man in Babylon", author: "George S. Clason", price: 85, color: "#1B3A6B" },
-  { id: "2", title: "Atomic Habits", author: "James Clear", price: 95, color: "#2D5016" },
-  { id: "3", title: "The Purpose Driven Life", author: "Rick Warren", price: 80, color: "#4A1942" },
-  { id: "4", title: "Rich Dad Poor Dad", author: "Robert Kiyosaki", price: 90, color: "#1B3A6B" },
-  { id: "5", title: "Boundaries", author: "Dr. Henry Cloud", price: 85, color: "#4A1942" },
-  { id: "6", title: "Deep Work", author: "Cal Newport", price: 88, color: "#2D5016" },
-  { id: "7", title: "The Alchemist", author: "Paulo Coelho", price: 75, color: "#6B3D16" },
-  { id: "8", title: "Think and Grow Rich", author: "Napoleon Hill", price: 82, color: "#1B3A6B" },
-  { id: "9", title: "The Bible", author: "Various Authors", price: 120, color: "#4A1942" },
-  { id: "10", title: "Mere Christianity", author: "C.S. Lewis", price: 78, color: "#3D1F5C" },
-  { id: "11", title: "The Total Money Makeover", author: "Dave Ramsey", price: 88, color: "#1B3A6B" },
-  { id: "12", title: "Mindset", author: "Carol S. Dweck", price: 85, color: "#2D5016" },
-  { id: "13", title: "The Very Hungry Caterpillar", author: "Eric Carle", price: 45, color: "#1B5E20" },
-  { id: "14", title: "Goodnight Moon", author: "Margaret Wise Brown", price: 42, color: "#1B5E20" },
-  { id: "15", title: "The Lion, the Witch and the Wardrobe", author: "C.S. Lewis", price: 65, color: "#1A3A5C" },
-  { id: "16", title: "Who Moved My Cheese?", author: "Spencer Johnson", price: 70, color: "#6B3D16" },
-  { id: "17", title: "The 7 Habits of Highly Effective People", author: "Stephen R. Covey", price: 92, color: "#2D5016" },
-  { id: "18", title: "Experiencing God", author: "Henry Blackaby", price: 82, color: "#4A1942" },
-  { id: "19", title: "I Will Teach You to Be Rich", author: "Ramit Sethi", price: 88, color: "#1B3A6B" },
-  { id: "20", title: "Charlotte's Web", author: "E.B. White", price: 55, color: "#1B5E20" },
-];
+  { id: "1", title: "The Richest Man in Babylon", author: "George S. Clason", price: 85, color: "#1B3A6B", genre: "Finance" },
+{ id: "2", title: "Atomic Habits", author: "James Clear", price: 95, color: "#2D5016", genre: "Growth" },
+{ id: "3", title: "The Purpose Driven Life", author: "Rick Warren", price: 80, color: "#4A1942", genre: "Faith" },
+{ id: "4", title: "Rich Dad Poor Dad", author: "Robert Kiyosaki", price: 90, color: "#1B3A6B", genre: "Finance" },
+{ id: "5", title: "Boundaries", author: "Dr. Henry Cloud", price: 85, color: "#4A1942", genre: "Faith" },
+{ id: "6", title: "Deep Work", author: "Cal Newport", price: 88, color: "#2D5016", genre: "Growth" },
+{ id: "7", title: "The Alchemist", author: "Paulo Coelho", price: 75, color: "#6B3D16", genre: "Growth" },
+{ id: "8", title: "Think and Grow Rich", author: "Napoleon Hill", price: 82, color: "#1B3A6B", genre: "Finance" },
+{ id: "9", title: "The Bible", author: "Various Authors", price: 120, color: "#4A1942", genre: "Faith" },
+{ id: "10", title: "Mere Christianity", author: "C.S. Lewis", price: 78, color: "#3D1F5C", genre: "Faith" },
+{ id: "11", title: "The Total Money Makeover", author: "Dave Ramsey", price: 88, color: "#1B3A6B", genre: "Finance" },
+{ id: "12", title: "Mindset", author: "Carol S. Dweck", price: 85, color: "#2D5016", genre: "Growth" },
+{ id: "13", title: "The Very Hungry Caterpillar", author: "Eric Carle", price: 45, color: "#1B5E20", genre: "Children" },
+{ id: "14", title: "Goodnight Moon", author: "Margaret Wise Brown", price: 42, color: "#1B5E20", genre: "Children" },
+{ id: "15", title: "The Lion, the Witch and the Wardrobe", author: "C.S. Lewis", price: 65, color: "#1A3A5C", genre: "Children" },
+{ id: "16", title: "Who Moved My Cheese?", author: "Spencer Johnson", price: 70, color: "#6B3D16", genre: "Growth" },
+{ id: "17", title: "The 7 Habits of Highly Effective People", author: "Stephen R. Covey", price: 92, color: "#2D5016", genre: "Growth" },
+{ id: "18", title: "Experiencing God", author: "Henry Blackaby", price: 82, color: "#4A1942", genre: "Faith" },
+{ id: "19", title: "I Will Teach You to Be Rich", author: "Ramit Sethi", price: 88, color: "#1B3A6B", genre: "Finance" },
+{ id: "20", title: "Charlotte's Web", author: "E.B. White", price: 55, color: "#1B5E20", genre: "Children" },];
 
 type CartItem = { book: typeof ALL_BOOKS[0]; qty: number };
 
@@ -94,19 +93,32 @@ export default function CheckoutPage() {
             { display_name: "Order", variable_name: "order", value: items.map(i => `${i.book.title} x${i.qty}`).join(", ") },
           ],
         },
-        callback: (response: any) => {
-          // Payment successful
-          localStorage.setItem("sikareads-cart", "[]");
-          localStorage.setItem("sikareads-last-order", JSON.stringify({
-            ref: response.reference,
-            items,
-            total,
-            name: `${firstName} ${lastName}`,
-            email,
-            address: `${address}, ${city}, ${region}`,
-          }));
-          router.push(`/order-success?ref=${response.reference}`);
-        },
+        callback: async (response: any) => {
+  // Save purchases to Supabase
+  try {
+    const { createClient } = await import("../lib/supabase");
+    const supabase = createClient();
+    
+    const purchaseRows = items.flatMap(item =>
+      Array(item.qty).fill(null).map(() => ({
+        email: email.toLowerCase().trim(),
+        book_id: item.book.id,
+        book_title: item.book.title,
+        book_author: item.book.author,
+        book_genre: (item.book as any).genre || "General",
+        order_ref: response.reference,
+      }))
+    );
+
+    await supabase.from("purchases").insert(purchaseRows);
+  } catch (e) {
+    console.error("Failed to save purchases:", e);
+  }
+
+  // Clear cart and redirect
+  localStorage.setItem("sikareads-cart", "[]");
+  router.push(`/order-success?ref=${response.reference}`);
+},
         onClose: () => {
           setPaying(false);
         },

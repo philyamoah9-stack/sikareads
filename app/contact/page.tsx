@@ -25,7 +25,7 @@ export default function ContactPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_KEY",
+          access_key: "94e4d5e7-7df3-4aaa-b309-934d071ca13d",
           name, email,
           subject: subject || "sikareads contact form",
           message,
