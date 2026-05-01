@@ -80,7 +80,7 @@ export default function CheckoutPage() {
     script.src = "https://js.paystack.co/v1/inline.js";
     script.onload = () => {
       const handler = (window as any).PaystackPop.setup({
-        key: "pk_test_703e882d0c1e96fce0bc57f9ac25912d823c0b6d", // Replace with your Paystack public key
+        key: "pk_live_3449441574162effe0040657589af5da1fec7b11", // Replace with your Paystack public key
         email,
         amount: total * 100, // Paystack uses pesewas
         currency: "GHS",
