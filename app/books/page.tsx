@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import BookCover from "../components/BookCover";
 
 const ALL_BOOKS = [
   { id: "1", title: "The Richest Man in Babylon", author: "George S. Clason", price: 85, genre: "Finance", color: "#1B3A6B", description: "The classic guide to financial wisdom through ancient Babylonian parables. Timeless principles for building wealth." },
@@ -121,13 +122,9 @@ export default function BooksPage() {
                 onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 8px 32px rgba(0,0,0,0.1)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.transform = "translateY(0)"; }}>
                 {/* Cover */}
-                <a href={`/books/${book.id}`}>
-                  <div style={{ height: "200px", background: book.color, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px", cursor: "pointer" }}>
-                    <div style={{ textAlign: "center" }}>
-                      <div style={{ fontFamily: "Playfair Display, serif", fontSize: "14px", color: "rgba(255,255,255,0.9)", fontWeight: 600, lineHeight: 1.3 }}>{book.title}</div>
-                      <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.55)", marginTop: "6px" }}>{book.author}</div>
-                    </div>
-                  </div>
+                {/* Cover */}
+                <a href={"/books/" + book.id}>
+                  <BookCover bookId={book.id} title={book.title} author={book.author} genre={book.genre} height="200px" />
                 </a>
 
                 {/* Info */}

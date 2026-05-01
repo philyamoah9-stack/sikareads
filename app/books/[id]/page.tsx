@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import BookCover from "../../components/BookCover";
 
 const ALL_BOOKS = [
   { id: "1", title: "The Richest Man in Babylon", author: "George S. Clason", price: 85, genre: "Finance", color: "#1B3A6B", description: "The classic guide to financial wisdom through ancient Babylonian parables. Timeless principles for building wealth that have stood the test of time. Through the story of Arkad, the richest man in Babylon, you will learn the fundamental laws of money — how to attract it, keep it, and make it grow.", pages: 144, publisher: "Signet", year: 1926, isbn: "978-0451205360" },

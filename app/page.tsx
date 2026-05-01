@@ -2,6 +2,7 @@
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import BookCover from "./components/BookCover";
 
 // ... rest of the file stays exactly the same
 
@@ -66,19 +67,13 @@ export default function Home() {
               <div key={book.id} style={{
                 position: "absolute",
                 width: "160px", height: "220px",
-                background: book.color,
                 borderRadius: "4px 8px 8px 4px",
-                border: "1px solid rgba(255,255,255,0.1)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                padding: "16px",
+                overflow: "hidden",
                 transform: `rotate(${[-8, -3, 3, 8][i]}deg) translateX(${[-80, -25, 30, 85][i]}px)`,
                 boxShadow: "4px 8px 24px rgba(0,0,0,0.4)",
                 zIndex: i,
               }}>
-                <div style={{ textAlign: "center" }}>
-                  <div style={{ fontFamily: "Playfair Display, serif", fontSize: "12px", color: "rgba(255,255,255,0.9)", lineHeight: 1.3, fontWeight: 600 }}>{book.title}</div>
-                  <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.5)", marginTop: "6px" }}>{book.author}</div>
-                </div>
+                <BookCover bookId={book.id} title={book.title} author={book.author} genre={book.genre} height="220px" fontSize={11} />
               </div>
             ))}
           </div>
@@ -121,16 +116,11 @@ export default function Home() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "24px" }} className="full-mobile">
           {FEATURED_BOOKS.map(book => (
-            <a key={book.id} href={`/books/${book.id}`} style={{ display: "block", background: "var(--white)", border: "1px solid var(--border)", borderRadius: "16px", overflow: "hidden", transition: "box-shadow 0.2s" }}
-              onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 8px 32px rgba(0,0,0,0.1)")}
-              onMouseLeave={e => (e.currentTarget.style.boxShadow = "none")}>
+   <a key={book.id} href={"/books/" + book.id} style={{ display: "block", background: "var(--white)", border: "1px solid var(--border)", borderRadius: "16px", overflow: "hidden", transition: "box-shadow 0.2s" }}
+                onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 8px 32px rgba(0,0,0,0.1)")}
+                onMouseLeave={e => (e.currentTarget.style.boxShadow = "none")}>
               {/* Cover */}
-              <div style={{ height: "200px", background: book.color, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }}>
-                <div style={{ textAlign: "center" }}>
-                  <div style={{ fontFamily: "Playfair Display, serif", fontSize: "14px", color: "rgba(255,255,255,0.9)", fontWeight: 600, lineHeight: 1.3 }}>{book.title}</div>
-                  <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.55)", marginTop: "6px" }}>{book.author}</div>
-                </div>
-              </div>
+              <BookCover bookId={book.id} title={book.title} author={book.author} genre={book.genre} height="200px" />
               {/* Info */}
               <div style={{ padding: "16px" }}>
                 <div style={{ fontFamily: "Playfair Display, serif", fontSize: "15px", fontWeight: 600, color: "var(--brown)", marginBottom: "4px", lineHeight: 1.3 }}>{book.title}</div>
