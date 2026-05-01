@@ -66,7 +66,7 @@ export default function CartPage() {
   };
 
   const subtotal = items.reduce((s, item) => s + item.book.price * item.qty, 0);
-  const delivery = subtotal > 0 ? 30 : 0;
+  const delivery = 0;
   const total = subtotal + delivery;
 
   if (!loaded) return null;
@@ -142,7 +142,6 @@ export default function CartPage() {
 
               {[
                 ["Subtotal", `GHS ${subtotal}`],
-                ["Delivery (Ghana)", `GHS ${delivery}`],
               ].map(([label, value]) => (
                 <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid var(--border)", fontSize: "14px" }}>
                   <span style={{ color: "var(--muted)" }}>{label}</span>
